@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>SAIA</title>
+  <link rel="stylesheet" href="https://use.typekit.net/aut1aeg.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; user-select: none; -webkit-user-select: none; }
+
+    html {
+      width: 100%;
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+
+    body {
+      width: 100%;
+      overflow-x: hidden;
+      max-width: 100vw;
+      background: #f2f2f2;
+      transition: background 0.4s ease;
+      font-family: 'aktiv-grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    #logo-scene {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15vh 0;
+    }
+
+    .site-svg {
+      display: block;
+      height: 80vh;
+      width: auto;
+      max-width: 1188px;
+      margin: 0 auto;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    @media (max-width: 600px) {
+      html, body {
+        overflow: hidden;
+        height: 100%;
+      }
+      .site-svg {
+        width: 115vw;
+        height: auto;
+        margin: 0 -10vw 0 -5vw;
+        display: block;
+      }
+    }
+
+    @keyframes spin-ccw {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(-360deg); }
+    }
+
+    #arrows {
+      transform-origin: 500.37px 700.35px;
+      animation: spin-ccw 18s linear infinite;
+    }
+
+    #logo-btn {
+      cursor: pointer;
+    }
+
+    /* All SVG colour transitions */
+    .cls-16, .cls-17, .cls-20, .cls-21,
+    #bg-rect, .text-layer * {
+      transition: fill 0.4s ease, opacity 0.4s ease;
+    }
+
+    
+    /* ── DARK MODE : COLOR VALUE SWAP ───────────────────────── */
+
+    body.dark {
+      background: #848484;
+    }
+
+    body.dark #bg-rect {
+      fill: #848484;
+    }
+
+    /* lavender -> white */
+    body.dark .cls-21 {
+      fill: #ffffff;
+    }
+
+    /* white -> dark */
+    body.dark .cls-16 {
+      fill: #2a2a2a;
+    }
+
+    /* circles -> lavender */
+    body.dark .cls-17 {
+      fill: #e1dee8;
+      opacity: .5;
+    }
+
+    /* cutouts */
+    body.dark .cls-20 {
+      fill: #848484;
+    }
+
+    /* text -> brightest */
+    body.dark .text-fill,
+    body.dark .cls-11,
+    body.dark .cls-14,
+    body.dark .cls-22,
+    body.dark a text {
+      fill: #f2f2f2;
+    }
+
+    body.dark a text {
+      text-decoration-color: #f2f2f2;
+    }
+
+    /* meeting counter label -> lavender in dark mode */
+    body.dark .mc-label-text {
+      fill: #e1dee8;
+    }
+
+    #logo-btn,
+    #mid-layer,
+    #wordmark-layer,
+    #text-layer {
+      will-change: transform, opacity, filter;
+      transition:
+        opacity 0.5s ease,
+        filter 0.5s ease;
+    }
+
+
+
+    /* ── Logo 3D perspective tilt ── */
+    #logo-tilt-wrap {
+      position: absolute;
+      /* sized to match the logo area in the SVG at its rendered size */
+      pointer-events: none;
+    }
+    #logo-tilt-inner {
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+  </style>
+</head>
+<body>
+
+<div id="logo-scene" style="position:relative; display:inline-block; width:100%; max-width:1188px; margin:0 auto; display:block;">
+  <!-- transparent overlay for mouse tracking over logo area -->
+  <div id="logo-overlay" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; perspective:1200px; z-index:2;">
+    <div id="logo-tilt-inner" style="width:100%;height:100%;transform-style:preserve-3d;will-change:transform;"></div>
+  </div>
+<svg class="site-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 280 1080 1070">
+  <defs>
+    <style>
+      .cls-1  { letter-spacing: -.02em; }
+      .cls-2  { letter-spacing: 0em; }
+      .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9 {
+        font-family: 'aktiv-grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-weight: 500;
+      }
+      .cls-10, .cls-11, .cls-12, .cls-13, .cls-14 {
+        font-family: 'aktiv-grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-weight: 300;
+      }
+      .cls-15 { letter-spacing: -.03em; }
+      .cls-16, .cls-17 { fill: #fff; }
+      .cls-17, .cls-18 { opacity: .5; }
+      .cls-19 { letter-spacing: 0em; }
+      .cls-20 { fill: #f2f2f2; }
+      .cls-21 { fill: #e1dee8; }
+      .cls-3  { letter-spacing: .02em; }
+      .cls-11 { font-size: 36px; }
+      .cls-11, .cls-22, .cls-14 { fill: #848484; }
+      .cls-23 { letter-spacing: .02em; }
+      .cls-4  { letter-spacing: -.01em; }
+      .cls-24 { letter-spacing: 0em; }
+      .cls-12 { letter-spacing: .02em; }
+      .cls-13 { letter-spacing: -.01em; }
+      .cls-5  { letter-spacing: -.02em; }
+      .cls-22 { font-size: 16.24px; }
+      .cls-6  { letter-spacing: 0em; }
+      .cls-8  { letter-spacing: 0em; }
+      .cls-9  { letter-spacing: 0em; }
+      .cls-14 { font-size: 24px; }
+      .text-fill { fill: #848484; }
+      a text {
+        text-decoration: underline;
+        text-decoration-color: #848484;
+        fill: #848484;
+      }
+    </style>
+  </defs>
+
+
+  <!-- Background -->
+
+
+  <!-- ═══ LOGO — clickable toggle ═══ -->
+  <g id="logo-btn">
+    <!-- invisible hit rect covering the logo area -->
+    <rect fill="none" x="160" y="355" width="680" height="690" style="pointer-events:all;"/>
+
+    <!-- Arrows (rotating) -->
+    <g id="arrows" class="cls-18">
+      <path class="cls-16" d="M397.55,643.56l-236.55,36.4,103.47-191.77,50.63,59.11,81.06-69.43,181.84,24.26-229.63,84.02s44.48,57.05,49.18,57.42Z"/>
+      <path class="cls-16" d="M554.27,594.64l-36.4-236.55,191.77,103.47-59.11,50.63,69.43,81.06-24.26,181.84-84.02-229.63s-57.05,44.48-57.42,49.18Z"/>
+      <path class="cls-16" d="M603.19,751.36l236.55-36.4-103.47,191.77-50.63-59.11-81.06,69.43-181.84-24.26,229.63-84.02s-44.48-57.05-49.18-57.42Z"/>
+      <path class="cls-16" d="M446.46,800.28l36.4,236.55-191.77-103.47,59.11-50.63-69.43-81.06,24.26-181.84,84.02,229.63s57.05-44.48,57.42-49.18Z"/>
+    </g>
+
+    <!-- Circles (static) -->
+    <circle class="cls-17" cx="472.51" cy="658.37" r="35.62"/>
+    <circle class="cls-17" cx="458.38" cy="728.21" r="35.62"/>
+    <circle class="cls-17" cx="528.23" cy="742.34" r="35.62"/>
+    <circle class="cls-17" cx="542.35" cy="672.49" r="35.62"/>
+  </g>
+
+  <!-- ═══ Building illustration ═══ -->
+  <g id="mid-layer">
+    <rect class="cls-21" x="781.03" y="988.03" width="49.57" height="58.92"/>
+    <rect class="cls-21" x="672.83" y="988.03" width="49.57" height="58.92"/>
+    <path class="cls-16" d="M669.32,827.86v235.2h165.84v-235.2h-165.84ZM697.16,1042.65h-22.74v-47h22.74v47ZM721.86,1042.65h-22.74v-47h22.74v47ZM805.47,1042.65h-22.74v-47h22.74v47ZM830.16,1042.65h-22.74v-47h22.74v47Z"/>
+    <rect class="cls-21" x="727.46" y="994.03" width="49.57" height="65.85"/>
+    <g>
+      <path class="cls-20" d="M725.27,990.8v70.94h26.97v-70.94h-26.97ZM748.87,1057.36h-20.23v-62.18h20.23v62.18Z"/>
+      <path class="cls-20" d="M752.24,990.8v70.94h26.97v-70.94h-26.97ZM775.84,1057.36h-20.23v-62.18h20.23v62.18Z"/>
+    </g>
+    <rect class="cls-21" x="687.13" y="890.23" width="31.77" height="58.92"/>
+    <rect class="cls-21" x="758.61" y="897.38" width="49.57" height="71.52"/>
+    <g>
+      <g>
+        <path class="cls-20" d="M756.73,895.11v70.94h26.97v-70.94h-26.97ZM780.33,961.68h-20.23v-62.18h20.23v62.18Z"/>
+        <path class="cls-20" d="M783.7,895.11v70.94h26.97v-70.94h-26.97ZM807.29,961.68h-20.23v-62.18h20.23v62.18Z"/>
+      </g>
+      <path class="cls-20" d="M833.9,937.18v-1.56h-103.07v1.56h41.44v2.32h-41.44v1.56h41.44v2.32h-41.44v1.56h41.44v2.32h-41.44v1.56h41.44v2.32h-41.44v1.56h41.44v2.32h-41.44v1.56h41.44v2.32h-41.44v1.56h41.44v2.32h-41.44v1.56h41.44v1.73h1.73v-1.73h19.93v1.73h1.73v-1.73h38.23v-1.56h-38.23v-2.32h38.23v-1.56h-38.23v-2.32h38.23v-1.56h-38.23v-2.32h38.23v-1.56h-38.23v-2.32h38.23v-1.56h-38.23v-2.32h38.23v-1.56h-38.23v-2.32h38.23v-1.56h-38.23v-2.32h38.23ZM793.93,962.8h-19.93v-2.32h19.93v2.32ZM793.93,958.92h-19.93v-2.32h19.93v2.32ZM793.93,955.04h-19.93v-2.32h19.93v2.32ZM793.93,951.15h-19.93v-2.32h19.93v2.32ZM793.93,947.27h-19.93v-2.32h19.93v2.32ZM793.93,943.39h-19.93v-2.32h19.93v2.32ZM793.93,939.5h-19.93v-2.32h19.93v2.32Z"/>
+      <path class="cls-20" d="M733.77,966.15v-94.61h-64.45v108.93h165.85v-14.32h-101.39ZM691.14,945.73v-50.56h19.64v50.56h-19.64Z"/>
+      <rect class="cls-20" x="691.1" y="920.97" width="19.78" height="1.88"/>
+    </g>
+    <g>
+      <rect class="cls-16" x="746.72" y="1027.27" width="7.36" height=".87" transform="translate(-277.31 1778.11) rotate(-90)"/>
+      <rect class="cls-16" x="750.4" y="1027.27" width="7.36" height=".87" transform="translate(-273.63 1781.79) rotate(-90)"/>
+    </g>
+    <g>
+      <rect class="cls-16" x="740.9" y="873.19" width="6.51" height="31.1"/>
+      <rect class="cls-16" x="820.33" y="873.19" width="6.51" height="31.1"/>
+    </g>
+    <rect class="cls-16" x="741.99" y="879.35" width="4.36" height="24.22"/>
+    <rect class="cls-16" x="821.45" y="879.35" width="4.36" height="24.22"/>
+    <polygon class="cls-20" points="829.06 865.68 738.1 865.68 738.1 873.63 741.55 873.63 741.55 882.63 746.78 882.63 746.78 873.63 821.01 873.63 821.01 882.63 826.23 882.63 826.23 873.63 829.06 873.63 829.06 865.68"/>
+    <g>
+      <rect class="cls-16" x="742.15" y="864.94" width="3.24" height="6.27"/>
+      <rect class="cls-16" x="755.47" y="864.94" width="3.21" height="6.27"/>
+      <rect class="cls-16" x="768.78" y="864.94" width="3.18" height="6.27"/>
+      <rect class="cls-16" x="782.1" y="864.94" width="3.15" height="6.27"/>
+      <rect class="cls-16" x="795.41" y="864.94" width="3.12" height="6.27"/>
+      <rect class="cls-16" x="808.72" y="864.94" width="3.09" height="6.27"/>
+      <rect class="cls-16" x="822.04" y="864.94" width="3.07" height="6.27"/>
+    </g>
+    <rect class="cls-20" x="740.11" y="864.28" width="87.56" height="2.82"/>
+    <path class="cls-16" d="M742.17,861.55v-.56l-.17-.1c-.11-.06-.21-.13-.31-.2-.31.16-.6.35-.87.58.26.22.55.41.87.57"/>
+    <path class="cls-16" d="M826.74,861.26c-.26.23-.55.42-.87.58-.23-.16-.48-.3-.74-.4v-.33l.19-.09c.19-.09.38-.2.55-.33.31.16.6.35.87.57Z"/>
+    <path class="cls-20" d="M829.02,856.09c-.03.28-.09.56-.17.82h0c-.17.56-.44,1.08-.8,1.54.03-.53-.06-1.05-.26-1.54.12-.3.2-.61.24-.93.02-.2.03-.4.02-.6-.04-.86-.37-1.66-.95-2.32-.71-.79-1.72-1.25-2.79-1.25-.68,0-1.35.19-1.93.54-.53.32-1.13.49-1.74.49s-1.21-.17-1.74-.49c-.58-.35-1.25-.54-1.93-.54-.74,0-1.45.22-2.06.62-.47.32-1.03.48-1.62.48s-1.14-.17-1.62-.48c-.61-.4-1.32-.62-2.06-.62s-1.38.2-1.97.56c-.52.32-1.11.49-1.71.49s-1.19-.17-1.71-.49c-.58-.36-1.26-.55-1.97-.55s-1.33.17-1.89.51c-.54.32-1.15.49-1.78.49s-1.24-.17-1.77-.49c-.56-.33-1.22-.51-1.9-.51s-1.39.19-1.97.55c-.52.32-1.11.49-1.71.49s-1.19-.17-1.71-.49c-.58-.36-1.26-.55-1.97-.55s-1.34.18-1.9.51c-.54.32-1.15.49-1.77.49s-1.24-.17-1.77-.49c-.57-.34-1.23-.52-1.9-.52-.75,0-1.47.22-2.08.63-.47.32-1.02.48-1.59.48s-1.13-.17-1.6-.48c-.62-.41-1.33-.63-2.08-.63s-1.45.22-2.06.62c-.47.32-1.03.48-1.62.48s-1.14-.17-1.62-.48c-.61-.4-1.32-.62-2.06-.62s-1.43.21-2.03.6c-.49.32-1.06.49-1.65.49s-1.15-.17-1.65-.49c-.6-.39-1.31-.6-2.03-.6s-1.46.22-2.08.63c-.47.32-1.02.48-1.6.48s-1.12-.17-1.59-.48c-.62-.41-1.34-.63-2.08-.63-.68,0-1.35.19-1.93.54-.54.33-1.15.5-1.77.5s-1.17-.16-1.66-.47c-.59-.37-1.28-.57-1.98-.57-.1,0-.2,0-.3.01-1.75.13-3.22,1.55-3.42,3.3,0,.09-.02.18-.02.27h0c-.02.54.06,1.05.26,1.53h0c-.12.3-.2.61-.24.94-.02.2-.03.4-.02.6-.37-.46-.64-.98-.8-1.54h0c-.19-.61-.25-1.26-.17-1.92.25-2.22,2.11-4.01,4.33-4.19.13,0,.25-.01.38-.01.89,0,1.76.25,2.51.73.33.21.72.32,1.13.32.43,0,.86-.13,1.25-.36.74-.45,1.59-.69,2.45-.69.95,0,1.86.28,2.64.81.3.2.66.31,1.03.31s.73-.11,1.04-.32c.78-.52,1.69-.8,2.64-.8s1.81.26,2.57.76c.33.22.71.33,1.1.33s.77-.11,1.1-.33c.77-.5,1.66-.76,2.57-.76s1.84.27,2.61.79c.31.21.68.32,1.06.32s.75-.11,1.06-.32c.78-.51,1.68-.79,2.61-.79s1.86.28,2.64.81c.31.2.66.31,1.04.31s.73-.11,1.03-.32c.78-.52,1.69-.8,2.64-.8.85,0,1.68.23,2.41.66.38.23.82.34,1.26.34s.88-.12,1.26-.34c.71-.43,1.55-.65,2.41-.65s1.76.24,2.49.7c.36.22.77.34,1.18.34s.82-.12,1.18-.34c.74-.46,1.6-.7,2.5-.7s1.69.22,2.4.65c.39.23.83.35,1.27.35s.88-.12,1.27-.35c.73-.43,1.56-.66,2.41-.66s1.74.25,2.49.71c.36.22.77.34,1.18.34s.82-.12,1.18-.34c.75-.46,1.61-.71,2.49-.71.93,0,1.84.27,2.61.79.31.21.68.32,1.06.32s.75-.11,1.06-.32c.78-.51,1.68-.79,2.61-.79.87,0,1.71.24,2.45.69.37.23.79.34,1.22.34s.85-.12,1.22-.34c.74-.45,1.59-.69,2.45-.69,1.35,0,2.63.57,3.53,1.58.91,1.02,1.33,2.33,1.18,3.7Z"/>
+    <path class="cls-20" d="M829.02,858.83c-.07.61-.26,1.19-.54,1.71-.19.33-.41.65-.67.93-.13-.33-.3-.64-.52-.93.22-.29.4-.6.52-.93.11-.29.19-.58.22-.89,0-.09.02-.18.02-.27h0c.03-.54-.06-1.06-.26-1.54-.16-.4-.39-.78-.69-1.12-.71-.79-1.72-1.24-2.79-1.24-.68,0-1.35.19-1.93.54-.53.32-1.13.49-1.74.49s-1.21-.17-1.74-.49c-.58-.35-1.25-.54-1.93-.54-.74,0-1.45.22-2.06.62-.47.32-1.03.48-1.62.48s-1.14-.17-1.62-.48c-.61-.4-1.32-.62-2.06-.62s-1.38.19-1.97.56c-.52.32-1.11.49-1.71.49s-1.19-.17-1.71-.49c-.58-.36-1.26-.55-1.97-.55s-1.33.18-1.89.51c-.54.32-1.15.49-1.78.49s-1.24-.17-1.77-.49c-.56-.33-1.22-.51-1.9-.51s-1.39.19-1.97.55c-.52.32-1.11.49-1.71.49s-1.19-.17-1.71-.49c-.58-.36-1.26-.55-1.97-.55s-1.34.18-1.9.51c-.54.32-1.15.49-1.77.49s-1.24-.17-1.77-.49c-.57-.34-1.23-.52-1.9-.52-.75,0-1.47.22-2.08.63-.47.32-1.02.48-1.59.48s-1.13-.17-1.6-.48c-.62-.41-1.33-.63-2.08-.63s-1.45.22-2.06.62c-.47.32-1.03.48-1.62.48s-1.14-.17-1.62-.48c-.61-.41-1.32-.62-2.06-.62s-1.43.21-2.03.6c-.49.32-1.06.49-1.65.49s-1.15-.17-1.65-.49c-.6-.39-1.31-.6-2.03-.6s-1.46.22-2.08.63c-.47.32-1.02.48-1.6.48s-1.12-.17-1.59-.48c-.62-.41-1.34-.63-2.08-.63-.68,0-1.35.19-1.93.54-.54.33-1.15.51-1.77.51s-1.17-.17-1.66-.48c-.59-.37-1.28-.57-1.98-.57-.1,0-.2,0-.3,0-1.43.11-2.66,1.07-3.18,2.36h0c-.12.3-.2.61-.24.94-.02.2-.03.4-.02.6h0c.02.4.1.8.24,1.16.12.33.3.64.52.93-.22.28-.39.6-.52.93-.01,0-.03-.02-.04-.04-.25-.28-.46-.57-.63-.89-.46-.85-.66-1.81-.55-2.81.03-.28.09-.56.17-.82h0c.17-.56.44-1.08.8-1.54h0c.8-1.03,2.01-1.72,3.36-1.83.13,0,.25-.01.38-.01.89,0,1.76.25,2.51.72.33.21.72.33,1.13.33.43,0,.86-.13,1.25-.36.74-.45,1.59-.69,2.45-.69.95,0,1.86.28,2.64.8.3.21.66.31,1.03.31s.73-.11,1.04-.31c.78-.52,1.69-.8,2.64-.8s1.81.26,2.57.76c.33.21.71.33,1.1.33s.77-.11,1.1-.33c.77-.5,1.66-.76,2.57-.76s1.84.27,2.61.79c.31.21.68.32,1.06.32s.75-.11,1.06-.32c.78-.51,1.68-.79,2.61-.79s1.86.28,2.64.8c.31.21.66.31,1.04.31s.73-.11,1.03-.31c.78-.52,1.69-.8,2.64-.8.85,0,1.68.23,2.41.66.38.23.82.35,1.26.35s.88-.12,1.26-.35c.71-.42,1.55-.65,2.41-.65s1.76.24,2.49.7c.36.22.77.34,1.18.34s.82-.12,1.18-.34c.74-.46,1.6-.7,2.5-.7s1.69.23,2.4.65c.39.23.83.35,1.27.35s.88-.12,1.27-.35c.73-.43,1.56-.66,2.41-.66s1.74.25,2.49.71c.36.22.77.34,1.18.34s.82-.12,1.18-.34c.75-.46,1.61-.71,2.49-.71.93,0,1.84.27,2.61.79.31.21.68.32,1.06.32s.75-.11,1.06-.32c.78-.51,1.68-.79,2.61-.79.87,0,1.71.24,2.45.68.37.23.79.34,1.22.34s.85-.12,1.22-.34c.74-.45,1.59-.69,2.45-.69,1.35,0,2.63.57,3.53,1.58.07.08.14.16.21.25.36.46.63.99.8,1.54h0c.19.61.25,1.25.17,1.91Z"/>
+    <path class="cls-20" d="M829.02,863.35c-.19,1.66-1.27,3.11-2.83,3.8l-.47.21v-1.08l.19-.09c1.16-.56,1.98-1.69,2.11-2.94.07-.61,0-1.22-.22-1.77-.13-.33-.3-.64-.52-.93-.06-.08-.12-.15-.19-.23-.19-.21-.4-.39-.63-.56-.23-.16-.48-.3-.75-.41-.44-.18-.93-.28-1.41-.28-.68,0-1.35.19-1.93.54-.53.32-1.13.49-1.74.49s-1.21-.17-1.74-.49c-.58-.35-1.25-.54-1.93-.54-.74,0-1.45.21-2.06.62-.47.32-1.03.48-1.62.48s-1.14-.17-1.62-.48c-.61-.41-1.32-.62-2.06-.62s-1.38.19-1.97.56c-.52.32-1.11.49-1.71.49s-1.19-.17-1.71-.49c-.58-.36-1.26-.55-1.97-.55s-1.33.18-1.89.51c-.54.32-1.15.49-1.78.49s-1.24-.17-1.77-.49c-.56-.33-1.22-.51-1.9-.51s-1.39.19-1.97.55c-.52.32-1.11.49-1.71.49s-1.19-.17-1.71-.49c-.58-.36-1.26-.55-1.97-.55s-1.34.18-1.9.51c-.54.32-1.15.49-1.77.49s-1.24-.17-1.77-.49c-.57-.34-1.23-.52-1.9-.52-.75,0-1.47.22-2.08.63-.47.32-1.02.48-1.59.48s-1.13-.17-1.6-.48c-.62-.41-1.33-.63-2.08-.63s-1.45.21-2.06.62c-.47.32-1.03.48-1.62.48s-1.14-.17-1.62-.48c-.61-.41-1.32-.62-2.06-.62s-1.43.21-2.03.6c-.49.32-1.06.49-1.65.49s-1.15-.17-1.65-.49c-.6-.39-1.31-.6-2.03-.6s-1.46.22-2.08.63c-.47.32-1.02.48-1.6.48s-1.12-.17-1.59-.48c-.62-.41-1.34-.63-2.08-.63-.68,0-1.35.19-1.93.54-.54.33-1.15.51-1.77.51s-1.17-.17-1.66-.48c-.59-.37-1.28-.57-1.98-.57-.1,0-.2,0-.3,0-.48.04-.95.17-1.37.39-.17.09-.33.18-.49.3-.31.22-.59.49-.82.79-.22.28-.39.6-.52.93-.11.29-.19.58-.22.9-.12,1.08.21,2.12.93,2.92.27.3.59.56.95.76l.17.1v1.11l-.49-.25c-.53-.27-.99-.62-1.38-1.05-.91-1.02-1.33-2.33-1.18-3.7.07-.61.26-1.19.55-1.71.18-.34.41-.65.67-.93.14-.16.3-.31.46-.44.27-.23.56-.43.88-.59.55-.29,1.15-.47,1.78-.51.13,0,.25-.02.38-.02.89,0,1.76.25,2.51.73.33.21.72.32,1.13.32.43,0,.86-.12,1.25-.36.74-.45,1.59-.69,2.45-.69.95,0,1.86.28,2.64.8.3.21.66.31,1.03.31s.73-.11,1.04-.31c.78-.53,1.69-.8,2.64-.8s1.81.26,2.57.76c.33.21.71.33,1.1.33s.77-.11,1.1-.33c.77-.5,1.66-.76,2.57-.76s1.84.27,2.61.79c.31.21.68.32,1.06.32s.75-.11,1.06-.32c.78-.51,1.68-.79,2.61-.79s1.86.28,2.64.8c.31.21.66.31,1.04.31s.73-.11,1.03-.31c.78-.53,1.69-.8,2.64-.8.85,0,1.68.23,2.41.66.38.23.82.35,1.26.35s.88-.12,1.26-.35c.71-.42,1.55-.65,2.41-.65s1.76.24,2.49.7c.36.22.77.34,1.18.34s.82-.12,1.18-.34c.74-.46,1.6-.7,2.5-.7s1.69.23,2.4.65c.39.23.83.35,1.27.35s.88-.12,1.27-.35c.73-.43,1.56-.66,2.41-.66s1.74.25,2.49.71c.36.22.77.34,1.18.34s.82-.12,1.18-.34c.75-.46,1.61-.71,2.49-.71.93,0,1.84.27,2.61.79.31.21.68.32,1.06.32s.75-.11,1.06-.32c.78-.51,1.68-.79,2.61-.79.87,0,1.71.24,2.45.68.37.23.79.34,1.22.34s.85-.12,1.22-.34c.74-.45,1.59-.68,2.45-.68.76,0,1.5.18,2.16.52.32.16.61.35.88.58.16.13.32.28.46.44.01.01.02.03.04.04.25.28.46.57.63.89.46.85.65,1.81.54,2.81Z"/>
+    <polygon class="cls-20" points="833.88 821.1 832.32 821.1 832.32 821.11 672.17 821.11 672.17 821.1 670.61 821.1 670.61 821.11 670.6 821.11 670.6 822.67 670.61 822.67 670.61 827.74 672.17 827.74 672.17 822.67 724.48 822.67 724.48 827.85 726.05 827.85 726.05 822.67 778.43 822.67 778.43 827.85 779.99 827.85 779.99 822.67 832.32 822.67 832.32 827.74 833.88 827.74 833.88 821.1"/>
+    <rect class="cls-16" x="733.77" y="965.98" width="101.4" height="3.34"/>
+  </g>
+
+  <!-- ═══ TEXT LAYER (parallax target) ═══ -->
+  <g id="text-layer">
+
+    <!-- Links -->
+    <a href="https://www.instagram.com/internetarchaeology"><text class="cls-11" font-family="'aktiv-grotesk','Helvetica Neue',Helvetica,Arial,sans-serif" transform="translate(177.89 1130.22)">instagram</text></a>
+    <a href="https://discord.gg/mcvknRMUhR"><text class="cls-11" font-family="'aktiv-grotesk','Helvetica Neue',Helvetica,Arial,sans-serif" transform="translate(487.33 1130.22)">discord</text></a>
+    <a href="https://www.are.na/samuel-platten/s-a-i-a-repository"><text class="cls-11" font-family="'aktiv-grotesk','Helvetica Neue',Helvetica,Arial,sans-serif" transform="translate(740.86 1130.22)">are.na</text></a>
+
+    <!-- Meeting info -->
+    <g id="meeting-location" opacity="0"><text font-family="'aktiv-grotesk','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16.24" class="text-fill" transform="translate(176.14 1053.75)"><tspan font-weight="300">meetings @ </tspan><tspan font-weight="500">smoothie vortex</tspan></text></g>
+    <g id="meeting-time" opacity="0"><text font-family="'aktiv-grotesk','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16.24" class="text-fill" transform="translate(433.43 1053.75)"><tspan font-weight="300">every </tspan><tspan font-weight="500">wednesday 6 - 8PM</tspan></text></g>
+
+    <!-- SAIA wordmark -->
+    <g id="wordmark-layer">
+      <path class="cls-21" d="M236.88,912.85c0-2.76-.84-5.12-2.52-7.11s-5.06-3.4-10.15-4.27l-12.15-2.33c-9.82-1.81-17.21-4.8-22.17-8.98-4.96-4.18-7.43-10.32-7.43-18.42,0-6.03,1.53-11.12,4.59-15.25,3.06-4.13,7.35-7.26,12.86-9.37,5.51-2.11,11.93-3.17,19.26-3.17,8.01,0,14.58,1.12,19.71,3.36,5.12,2.24,9.05,5.32,11.76,9.24,2.71,3.92,4.42,8.42,5.11,13.51l-19.65,2.46c-1.12-4.31-2.91-7.47-5.36-9.5-2.46-2.02-6.44-3.04-11.96-3.04-5.86,0-10.04.99-12.54,2.97-2.5,1.98-3.75,4.53-3.75,7.63s.95,5.47,2.84,7.11c1.89,1.64,5.21,2.93,9.95,3.88l12.67,2.46c10.25,1.98,17.71,5.15,22.36,9.5s6.98,10.49,6.98,18.42c0,8.71-3.15,15.71-9.44,21-6.29,5.3-15.6,7.95-27.92,7.95s-21.11-2.5-27.92-7.5c-6.81-5-10.64-12.71-11.5-23.14h20.16c.78,5,2.78,8.66,6.01,10.99s7.95,3.49,14.15,3.49,10.1-1.12,12.47-3.36c2.37-2.24,3.55-5.08,3.55-8.53Z"/>
+      <path class="cls-21" d="M268.55,917.24h19.13v21.33h-19.13v-21.33Z"/>
+      <path class="cls-21" d="M360.32,918.15h-34.64l-6.98,20.42h-20.42l33.09-92.29h24.04l32.83,92.29h-21.07l-6.85-20.42ZM342.87,864.12l-12.28,37.61h24.69l-12.41-37.61Z"/>
+      <path class="cls-21" d="M398.7,917.24h19.13v21.33h-19.13v-21.33Z"/>
+      <path class="cls-21" d="M433.86,846.28h20.29v92.29h-20.29v-92.29Z"/>
+      <path class="cls-21" d="M470.05,917.24h19.13v21.33h-19.13v-21.33Z"/>
+      <path class="cls-21" d="M561.82,918.15h-34.64l-6.98,20.42h-20.42l33.09-92.29h24.04l32.83,92.29h-21.07l-6.85-20.42ZM544.37,864.12l-12.28,37.61h24.69l-12.41-37.61Z"/>
+      <path class="cls-21" d="M600.21,917.24h19.13v21.33h-19.13v-21.33Z"/>
+    </g>
+
+    <!-- Subtitle -->
+    <text font-family="'aktiv-grotesk','Helvetica Neue',Helvetica,Arial,sans-serif" font-weight="300" font-size="24" class="text-fill" transform="translate(176.26 1001.05)">(social anthropology internet archaeology)</text>
+
+
+    <!-- Meeting Counter -->
+    <g id="meeting-counter" opacity="0">
+      <!-- "meeting counter:" label -->
+      <text id="mc-label" class="mc-label-text" font-family="'aktiv-grotesk','Helvetica Neue',Helvetica,Arial,sans-serif" font-weight="300" font-size="24" fill="#848484" opacity="0" transform="translate(402 1210)">meeting counter:</text>
+
+      <!-- Badge background + number, revealed by clipPath curtain -->
+      <defs>
+        <clipPath id="badge-clip">
+          <rect id="badge-clip-rect" x="616" y="1187.48" width="60.48" height="0" rx="0" ry="0"/>
+        </clipPath>
+      </defs>
+      <g clip-path="url(#badge-clip)">
+        <rect x="616" y="1187.48" width="60.48" height="29.75" rx="1.55" ry="1.55" fill="#ffffff"/>
+        <text id="mc-number" font-family="'aktiv-grotesk','Helvetica Neue',Helvetica,Arial,sans-serif" font-weight="700" font-size="24" fill="#e1dee8" transform="translate(625 1210)">009</text>
+      </g>
+    </g>
+
+  </g><!-- /text-layer -->
+
+</svg>
+</div>
+
+
+<script>
+(function () {
+
+  const body = document.body;
+
+  const logoLayer = document.getElementById('logo-btn');
+  const midLayer = document.getElementById('mid-layer');
+  const wordmarkLayer = document.getElementById('wordmark-layer');
+  const textLayer = document.getElementById('text-layer');
+
+  /* ─────────────────────────────
+     NIGHT MODE TOGGLE
+  ───────────────────────────── */
+
+  function toggleTheme(e) {
+    e.stopPropagation();
+    body.classList.toggle('dark');
+  }
+
+  logoLayer.addEventListener('click', toggleTheme);
+
+  logoLayer.querySelectorAll('*').forEach(el => {
+    el.style.cursor = 'pointer';
+    el.addEventListener('click', toggleTheme);
+  });
+
+  // Mobile tap: touchend fires reliably even when touchmove is active
+  logoLayer.addEventListener('touchend', function(e) {
+    e.preventDefault();
+    toggleTheme(e);
+  }, { passive: false });
+
+  /* ─────────────────────────────
+     MULTI-LAYER PARALLAX
+  ───────────────────────────── */
+
+  let current = 0;
+  let target = 0;
+
+  const isMobile = window.matchMedia('(max-width: 600px)').matches;
+
+  function lerp(a, b, t) {
+    return a + (b - a) * t;
+  }
+
+  function animate() {
+
+    target = window.scrollY;
+
+    // On mobile, snap faster so thumb-scroll momentum is felt immediately
+    const lerpFactor = isMobile ? 0.18 : 0.065;
+    current = lerp(current, target, lerpFactor);
+
+    // layer depths — boosted on mobile so the effect reads clearly on a small screen
+    const far   = current * (isMobile ? 0.06  : 0.02);
+    const mid   = current * (isMobile ? 0.13  : 0.045);
+    const close = current * (isMobile ? 0.24  : 0.085);
+
+    // atmospheric softness
+    const velocity = Math.abs(target - current);
+
+   const blur = Math.min(velocity * 0.006, 0.22);
+   const opacity = 1 - Math.min(velocity * 0.00035, 0.02);
+
+    // farthest: logo
+    logoLayer.style.transform =
+      `translateY(${far}px)`;
+
+    // middle: building + SAIA wordmark
+    midLayer.style.transform =
+      `translateY(${mid}px)`;
+
+    wordmarkLayer.style.transform =
+      `translateY(${mid}px)`;
+
+    // closest: text + links
+    textLayer.style.transform =
+      `translateY(${close}px)`;
+
+    textLayer.style.filter =
+      `blur(${blur}px)`;
+
+    textLayer.style.opacity =
+      opacity;
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  // ── LOGO 3D TILT ─────────────────────────────────
+  (function() {
+    const svg    = document.querySelector('.site-svg');
+    const inner  = document.getElementById('logo-tilt-inner');
+    const logoG  = document.getElementById('logo-btn');
+
+    // Logo center in SVG coords
+    const LOGO_CX_SVG = 500;
+    const LOGO_CY_SVG = 700;
+    const LOGO_R_SVG  = 340; // interaction radius in SVG units
+
+    let tX = 0, tY = 0, cX = 0, cY = 0;
+
+    function getLogoCenter() {
+      const vb = svg.viewBox.baseVal;
+      const rect = svg.getBoundingClientRect();
+      const scaleX = rect.width  / vb.width;
+      const scaleY = rect.height / vb.height;
+      return {
+        x: rect.left + LOGO_CX_SVG * scaleX,
+        y: rect.top  + LOGO_CY_SVG * scaleY,
+        r: LOGO_R_SVG * ((scaleX + scaleY) / 2)
+      };
+    }
+
+    window.addEventListener('mousemove', (e) => {
+      const c = getLogoCenter();
+      const dx = e.clientX - c.x;
+      const dy = e.clientY - c.y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      // Smooth proximity falloff: 0 strength at edge, full strength at center
+      const maxR = c.r * 1.5;
+      const strength = Math.max(0, 1 - dist / maxR);
+      // Ease the strength curve so entry is gradual
+      const eased = strength * strength;
+      tX =  (dx / c.r) * 18 * eased;
+      tY = -(dy / c.r) * 18 * eased;
+    });
+
+    window.addEventListener('mouseleave', () => { tX = 0; tY = 0; });
+
+    // Touch support
+    window.addEventListener('touchmove', (e) => {
+      const touch = e.touches[0];
+      const c = getLogoCenter();
+      const dx = touch.clientX - c.x;
+      const dy = touch.clientY - c.y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < c.r * 1.5) {
+        tX =  (dx / c.r) * 14;
+        tY = -(dy / c.r) * 14;
+      } else {
+        tX = 0; tY = 0;
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchend', () => { tX = 0; tY = 0; });
+
+    function tiltLoop() {
+      cX += (tX - cX) * 0.08;
+      cY += (tY - cY) * 0.08;
+      logoG.style.transform = `perspective(900px) rotateX(${cY}deg) rotateY(${cX}deg)`;
+      logoG.style.transformBox = 'fill-box';
+      logoG.style.transformOrigin = 'center';
+      requestAnimationFrame(tiltLoop);
+    }
+    tiltLoop();
+  })();
+
+
+
+  function fadeIn(el, duration) {
+    const start = performance.now();
+    function step(now) {
+      const t = Math.min((now - start) / duration, 1);
+      // ease in-out sine
+      const e = -(Math.cos(Math.PI * t) - 1) / 2;
+      el.setAttribute('opacity', e);
+      if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  function flickerIn(el, startDelay) {
+    const frames = [0,0, 80,0.8, 160,0, 240,0.9, 300,0.1, 380,1, 420,0.3, 500,1, 560,0.6, 640,1, 680,0.4, 760,1];
+    for (let i = 0; i < frames.length; i += 2) {
+      (function(delay, opacity) {
+        setTimeout(function() {
+          el.setAttribute('opacity', opacity);
+        }, startDelay + delay);
+      })(frames[i], frames[i+1]);
+    }
+  }
+
+  // Fade in SVG on load
+  document.fonts.ready.then(function() {
+    setTimeout(function() {
+      document.querySelector('.site-svg').style.opacity = 1;
+    }, 500);
+  });
+
+  document.fonts.ready.then(function() {
+    setTimeout(function() {
+      flickerIn(document.getElementById('meeting-location'), 0);
+    }, 2000);
+    setTimeout(function() {
+      flickerIn(document.getElementById('meeting-time'), 0);
+    }, 2700);
+  });
+
+
+  // ── MEETING COUNTER ──────────────────────────────
+  // Fetch number from txt file, fall back to hardcoded value
+  fetch('meeting_count.txt')
+    .then(r => r.text())
+    .then(t => {
+      const num = t.trim();
+      document.getElementById('mc-number').textContent = num;
+    })
+    .catch(() => { /* keep default 009 */ });
+
+  function animateCurtain(el, fromY, height, duration) {
+    const start = performance.now();
+    function step(now) {
+      const t = Math.min((now - start) / duration, 1);
+      // ease out quint — smooth deceleration
+      const e = 1 - Math.pow(1 - t, 5);
+      const currentH = e * height;
+      const currentY = fromY + height - currentH;
+      el.setAttribute('y', currentY);
+      el.setAttribute('height', currentH);
+      if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  document.fonts.ready.then(function() {
+    setTimeout(function() {
+      // 1. show the whole group
+      document.getElementById('meeting-counter').setAttribute('opacity', 1);
+      // 2. fade in the label
+      fadeIn(document.getElementById('mc-label'), 800);
+      // 3. after label fades, rise the badge curtain
+      setTimeout(function() {
+        animateCurtain(document.getElementById('badge-clip-rect'), 1187.48, 29.75, 1200);
+      }, 1000);
+    }, 4000);
+  });
+
+})();
+</script>
+
+
+</body>
+</html>
