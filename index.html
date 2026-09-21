@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>SAIA</title>
+  <title>S.A.I.A. | Social Anthropology Internet Archaeology</title>
+  <meta name="description" content="S.A.I.A. (Social Anthropology Internet Archaeology) is a Phoenix-based community for unearthing and archiving internet culture and art.">
+  <link rel="canonical" href="https://www.saia.center/">
+  <meta name="robots" content="index, follow">
 
   <link rel="icon" type="image/png" href="saia_favicon.png">
 
@@ -12,12 +15,28 @@
   <meta property="og:image" content="https://saia.center/saia_thumbnail.png">
   <meta property="og:image:type" content="image/png">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://saia.center">
+  <meta property="og:url" content="https://www.saia.center/">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="S.A.I.A. — Social Anthropology Internet Archaeology">
   <meta name="twitter:description" content="A club unearthing and archiving internet culture and art.">
-  <meta name="twitter:image" content="https://saia.center/saia_thumbnail.png">
+  <meta name="twitter:image" content="https://www.saia.center/saia_thumbnail.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Social Anthropology Internet Archaeology",
+    "alternateName": "S.A.I.A.",
+    "url": "https://www.saia.center/",
+    "logo": "https://www.saia.center/saia_thumbnail.png",
+    "description": "A Phoenix-based community unearthing and archiving internet culture and art.",
+    "sameAs": [
+      "https://www.instagram.com/internetarchaeology",
+      "https://www.are.na/s-a-i-a-p6eg8zx1sme/channels"
+    ]
+  }
+  </script>
 
   <link rel="stylesheet" href="https://use.typekit.net/aut1aeg.css">
   <style>
@@ -36,6 +55,18 @@
       background: #f2f2f2;
       transition: background 0.4s ease;
       font-family: 'aktiv-grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     #logo-scene {
@@ -165,6 +196,16 @@
   </style>
 </head>
 <body>
+<main>
+  <header class="sr-only">
+    <h1>S.A.I.A. — Social Anthropology Internet Archaeology</h1>
+    <p>S.A.I.A. is a Phoenix-based community for unearthing and archiving internet culture and art. Meetings are held every Wednesday from 6–8 PM at Smoothie Vortex.</p>
+    <nav aria-label="S.A.I.A. links">
+      <a href="https://www.instagram.com/internetarchaeology">Instagram</a>
+      <a href="https://discord.gg/mcvknRMUhR">Discord</a>
+      <a href="https://www.are.na/s-a-i-a-p6eg8zx1sme/channels">Are.na</a>
+    </nav>
+  </header>
 
 <div id="logo-scene" style="position:relative; display:inline-block; width:100%; max-width:1188px; margin:0 auto; display:block;">
   <!-- transparent overlay for mouse tracking over logo area -->
@@ -337,7 +378,7 @@
 
 </svg>
 </div>
-
+</main>
 
 <script>
 (function () {
